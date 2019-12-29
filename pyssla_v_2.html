@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>PYSSLA</title>
+    <style>
+        body {
+            background-image: url("https://i.pinimg.com/originals/b0/d2/17/b0d217836aedf6b8256e55f28a1ea652.jpg");            
+        }
+
+        h1 {
+            margin-top: 80px;
+            color: white;
+            text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
+        }
+
+        table {
+            background-color: rgba(245, 245, 245, 0.582);
+        }
+
+        #left {
+            display: block;
+            border-style: dashed;
+            border-color: red;
+            text-align: center;
+            margin: 20px;
+            background-color: rgba(177, 250, 177, 0.61);
+        }
+
+        #msg {
+            font-size: 30px;
+            color: greenyellow;
+            text-shadow: -1px 0 rgb(80, 128, 3), 0 3px rgb(80, 128, 3), 3px 0 rgb(80, 128, 3), 0 -1px rgb(80, 128, 3);
+        }
+
+        button,
+        input {
+            margin: 10px;
+            margin-bottom: 158px;
+        }
+
+        #right {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+
+        .cer {
+
+            border: 2px solid rgb(233, 213, 213);
+            height: 15px;
+            border-radius: 41%;
+            -moz-border-radius: 41%;
+            -webkit-border-radius: 41%;
+            width: 15px;
+        }
+
+        #resultat {
+            height: 200px;
+            width: 200px;
+            background-color: rgb(127, 127, 127);
+            text-align: center;
+            box-sizing: border-box;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div id="left" class="col-sm-3">
+                <h1><b>Pyssla</b></h1>
+                <button id="btn" value="Generate a table." onclick="generate_table()">Click Here To
+                    Begin</button>
+                <p id="msg">
+
+                </p>
+                <p>
+                    <input type="color" id="inp">
+
+                </p>
+            </div>
+            <div id="right" class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function generate_table() {
+
+        var game = document.getElementById('right');
+        var tbl = document.createElement("table");
+        var tblBody = document.createElement("tbody");
+        // creating all columns and rows
+        for (var i = 0; i < 29; i++) {
+            // creates a table row
+            var row = document.createElement("tr");
+            row.setAttribute("height", "20px");
+            for (var j = 0; j < 29; j++) {
+                // Create table column
+                var cell = document.createElement("td");
+                cell.setAttribute("width", "20px");
+                cell.className = 'cell';
+                var cercle = document.createElement("div");
+                cercle.className = "cer";
+                cercle.setAttribute("onclick", "color(event)");
+                cell.appendChild(cercle);
+                row.appendChild(cell);
+            }
+             // add the row to the end of the table body then add table body to table and table to div "game"
+            tblBody.appendChild(row);
+            tbl.appendChild(tblBody);
+            game.appendChild(tbl);
+            tbl.setAttribute("border", "2");
+        }
+         // hide the button which creates table
+        hide();
+    }
+
+
+
+    function hide() {
+        // hide the button which creates table and add text "message"
+        document.getElementById("btn").style.display = "none";
+        document.getElementById("msg").innerHTML = "Choose your color";
+    }
+
+    function color(event) {
+        var target = event.target;
+        if (target.className == 'cer') {
+            target.style.backgroundColor = document.getElementById("inp").value;
+        }
+    }
+</script>
+
+</html>
